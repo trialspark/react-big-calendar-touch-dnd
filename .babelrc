@@ -1,0 +1,9 @@
+{
+  "presets": [
+    "react",
+    ["env", {
+      "modules": false,
+      "loose": true
+    }]
+  ]
+}

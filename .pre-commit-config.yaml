@@ -1,0 +1,6 @@
+-   repo: git://github.com/pre-commit/mirrors-eslint
+    sha: 3f5585a65eeec878e779a5630628db158ba3dab1
+    hooks:
+    - id: eslint
+      files: \.jsx?$
+      additional_dependencies: ['eslint@3.7.0', 'eslint-plugin-import@1.16.0', 'eslint-plugin-react@6.3.0', 'eslint-plugin-jsx-a11y@2.2.2', 'eslint-config-airbnb@12.0.0']
