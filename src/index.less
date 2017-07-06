@@ -1,0 +1,11 @@
+.rbc-day-slot,
+.rbc-row-content {
+  .rbc-event.touch-dnd-dragging {
+    @transition-time: 100ms;
+
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, .15);
+    isolation: isolate;
+    transition: transform @transition-time, box-shadow @transition-time;
+    z-index: 1000;
+  }
+}

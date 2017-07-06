@@ -1,0 +1,23 @@
+# Title: A short description of the change made using the imperative, present
+# tense, not ending with a period.
+
+
+# Description: A longer, more detailed description of the change, still in the
+# imperative, present tense. Bullet points may be used in the form of an
+# asterisk (*.)
+Description
+-----------
+
+
+# Related Pull Requests: Add the ids of related PRs here as a comma-separated
+# list. Format PR ids so GitHub will identify them (e.g. #123, #2, etc.)
+Related Pull Requests
+---------------------
+
+
+# Testing Steps: A testing plan, formatted as a bulleted list (using asterisks)
+# outlining manual acceptance tests that must pass in staging before the changes
+# can be promoted to production.
+Testing Steps
+-------------
+
