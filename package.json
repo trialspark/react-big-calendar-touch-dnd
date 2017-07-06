@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Drag and drop addon for react-big-calendar that supports moving actual events around the calendar with touch support.",
   "main": "lib/react-big-calendar-touch-dnd.js",
+  "files": ["lib"],
   "repository": "git@github.com:trialspark/react-big-calendar-touch-dnd.git",
   "author": "Trialspark, Inc.",
   "license": "MIT",
