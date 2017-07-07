@@ -21,6 +21,19 @@ const uid = (() => {
 })();
 
 class Simulator {
+  static createMouseEvent(type, x, y) {
+    return new MouseEvent(type, {
+      bubbles: true,
+      cancelable: true,
+      screenX: x,
+      screenY: y,
+      clientX: x,
+      clientY: y,
+      pageX: document.body.scrollLeft + x,
+      pageY: document.body.scrollTop + y,
+    });
+  }
+
   constructor(wrapper) {
     this.element = findDOMNode(wrapper.node);
 
@@ -171,6 +184,15 @@ class Simulator {
     const position = findDOMNode(wrapper.node).getBoundingClientRect();
 
     return this.dragTo(position.left, position.top);
+  }
+
+  click(horizontal, vertical) {
+    const { x, y } = this.getTouchPoint(horizontal, vertical);
+    const event = this.constructor.createMouseEvent('click', x, y);
+
+    this.element.dispatchEvent(event);
+
+    return event;
   }
 }
 
@@ -350,6 +372,37 @@ describe('index', () => {
     simulator.dragTo(100, -500);
 
     expect(props.onEventDrop).not.toHaveBeenCalled();
+  });
+
+  it('prevents clicks after a drag occurs', () => {
+    const spy = jasmine.createSpy('spy()');
+
+    function Event() {
+      return <button className="custom-event" onClick={spy}>My Event</button>;
+    }
+
+    component.setProps({
+      components: {
+        event: Event,
+      },
+    });
+
+    const simulator = new Simulator(event('First Event'));
+    const button = new Simulator(event('First Event').find('.custom-event'));
+
+    button.click();
+
+    expect(spy).toHaveBeenCalled();
+    spy.calls.reset();
+
+    // A long press doesn't trigger a click
+    simulator.press();
+    simulator.release();
+    button.click();
+    expect(spy).not.toHaveBeenCalled();
+
+    button.click();
+    expect(spy).toHaveBeenCalled();
   });
 
   describe('in month view', () => {
