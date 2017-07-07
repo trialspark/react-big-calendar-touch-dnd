@@ -79,6 +79,13 @@ export default () => (EventWrapper) => {
       const { dnd } = this.context;
       const { event } = this.props;
 
+      // Prevent a click from firing after dragging
+      const preventClick = (e) => {
+        e.stopImmediatePropagation();
+        e.currentTarget.removeEventListener('click', preventClick, false);
+      };
+      this.mc.element.addEventListener('click', preventClick, false);
+
       // Clean up added styles/listeners
       if (this.resetStyles) {
         this.resetStyles();
