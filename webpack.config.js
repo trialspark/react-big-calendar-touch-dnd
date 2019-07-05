@@ -58,9 +58,11 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
     new UglifyJSPlugin({
-      compress: true,
-      mangle: false,
-      beautify: true,
+      uglifyOptions: {
+        compress: true,
+        mangle: false,
+        beautify: true,
+      },
     }),
   ],
 };
